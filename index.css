@@ -1,0 +1,92 @@
+body {
+  background-color: #19150d;
+  color: #a88d00;
+  text-shadow: 0 0 5px #af9e49;
+  height: 100%;
+  width: 100%;
+  font-family: 'VT323', monospace;
+  font-size: 3em;
+}
+
+/* Scan lines from http://aleclownes.com/2017/02/01/crt-display.html */
+body::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  z-index: 2;
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
+}
+
+.vertical-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.horizontal-container {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.header {
+  text-align: center;
+  outline: .1em solid #a88d00;
+  font-size: 1.2em;
+  line-height: .9;
+}
+
+.logo {
+  border-radius: 50%;
+  width: 1em;
+  height: 1em;
+  border: 3px solid #a88d00;
+  color: #a88d00;
+  text-align: center;
+  vertical-align: center;
+  font-size: 3em;
+}
+
+.main {
+  display: grid;
+  gap: 1em;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+}
+
+.main .double_height {
+  grid-column-start: 2;
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+
+.rounds_counter, .time_counter {
+  outline: .1em solid #a88d00;
+  font-size: 2em;
+}
+
+.temp_chart, .rm_chart {
+  height: 300px;
+  border-right: .1em solid #a88d00;
+  overflow: hidden;
+}
+
+.progress {
+  height: 100%;
+  width: 1em;
+  background-color: #a88d00;
+  position: relative;
+  bottom: -0; /* percents are expressed as negative e.g. -20% would be 80% */
+}
+
+.main, .ui {
+  margin: .5em 0;
+  border-bottom: .1em solid #a88d00;
+}
