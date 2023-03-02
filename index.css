@@ -83,10 +83,21 @@ body::before {
   width: 1em;
   background-color: #a88d00;
   position: relative;
-  bottom: -0; /* percents are expressed as negative e.g. -20% would be 80% */
+  bottom: -100%; /* percents are expressed as negative e.g. -20% would be 80% */
+}
+
+.danger {
+  background-color: #800000;
+  color: #800000;
+}
+
+.caution {
+  background-color: #884200;
+  color: #884200;
 }
 
 .main, .ui {
   margin: .5em 0;
   border-bottom: .1em solid #a88d00;
+  width: 100%;
 }
