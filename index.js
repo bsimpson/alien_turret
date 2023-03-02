@@ -31,7 +31,7 @@ function bindSpacebar() {
 
   // handle cooldown
   setInterval(() => {
-    temp = Math.max(0, temp - 3);
+    temp = Math.max(0, temp - 10);
     tempEl.style.bottom = `-${100 - temp}%`;
   }, 1000);
 

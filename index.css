@@ -6,6 +6,8 @@ body {
   width: 100%;
   font-family: 'VT323', monospace;
   font-size: 3em;
+  padding: 0;
+  margin: 0;
 }
 
 /* Scan lines from http://aleclownes.com/2017/02/01/crt-display.html */
@@ -59,6 +61,7 @@ body::before {
   gap: 1em;
   grid-template-columns: repeat(2, 1fr);
   align-items: center;
+  padding-bottom: 1em;
 }
 
 .main .double_height {
@@ -76,6 +79,7 @@ body::before {
   height: 300px;
   border-right: .1em solid #a88d00;
   overflow: hidden;
+  border-bottom: .1em solid #a88d00;
 }
 
 .progress {
