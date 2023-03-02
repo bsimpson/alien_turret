@@ -1,19 +1,47 @@
-let ammo = 1000;
-let timer = 0;
-let temp = 0;
-let rm = 0;
-let ammoHistory = [];
-
-function bindSpacebar() {
+function initialize() {
   const roundsCounterEl = document.querySelector('.rounds_counter');
   const timeCounterEl = document.querySelector('.time_counter');
   const tempEl = document.querySelector('.temp_chart .progress');
   const rmEl = document.querySelector('.rm_chart .progress');
 
-  document.addEventListener('keypress', (evt) => {
-    // space
-    if (evt.keyCode === 32) {
+  let ammo = 1000;
+  let timer = 0;
+  let temp = 0;
+  let ammoHistory = [];
+  let fireInterval;
 
+  window.addEventListener('keydown', (evt) => {
+    if (evt.keyCode !== 32) {
+      return;
+    }
+
+    if (fireInterval) {
+      return;
+    }
+
+    fireInterval = startFire();
+  });
+
+  window.addEventListener('keyup', (evt) => {
+    clearInterval(fireInterval)
+    fireInterval = null;
+  });
+
+  window.addEventListener('touchstart', () => {
+    if (fireInterval) {
+      return;
+    }
+
+    fireInterval = startFire();
+  });
+
+  window.addEventListener('touchend', () => {
+    clearInterval(fireInterval)
+    fireInterval = null;
+  });
+
+  function startFire() {
+    return setInterval(() => {
       if ((ammo - 2) >= 0 && temp < 100) {
         ammo -= 2;
         ammoHistory.unshift(Date.now());
@@ -26,8 +54,8 @@ function bindSpacebar() {
       roundsCounterEl.innerText = ammo;
       timeCounterEl.innerText = (timer / 60).toPrecision(2);
       tempEl.style.bottom = `-${100 - temp}%`;
-    }
-  });
+    }, 10);
+  }
 
   // handle cooldown
   setInterval(() => {
@@ -58,7 +86,7 @@ function bindSpacebar() {
       roundsCounterEl.classList.remove('danger');
       roundsCounterEl.classList.remove('caution');
     }
-  });
+  }, 100);
 
   // rounds / minute
   setInterval(() => {
@@ -69,4 +97,5 @@ function bindSpacebar() {
 
 // TODO cool sound effects
 
-window.onload = bindSpacebar;
+
+window.onload = initialize;
