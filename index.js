@@ -12,7 +12,7 @@ function bindSpacebar() {
 
   document.addEventListener('keypress', (evt) => {
     // space
-    if (event.keyCode === 32) {
+    if (evt.keyCode === 32) {
 
       if ((ammo - 2) >= 0 && temp < 100) {
         ammo -= 2;
